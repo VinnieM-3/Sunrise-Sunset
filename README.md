@@ -1,5 +1,6 @@
-# Sunrise-Sunset
-Python program to display and plot sunrise and sunset data.
+# Sunrise Sunset
+
+Python program to display and plot sunrise, sunset, length of day, and solar noon data.
 
 Requires: Python (tested on 2.7 and 3.7) and matplotlib. 
 
