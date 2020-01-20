@@ -6,10 +6,10 @@ from datetime import datetime, timedelta
 import matplotlib.ticker as tick
 
 
-# New York City, 2020
+# Mumbai, 2020
 year = 2020
-plot_title = "New York City, 2020"
-results = sun_rise_set(40.716, -74, 0, "20200105 07:48", "20191222 04:19", -5, -4, "20200308", "20201101")
+plot_title = "Mumbai, 2020"
+results = sun_rise_set(18.95, 72.833, 0, "20200105 07:48", "20191222 04:19", 5.5)
 
 
 # no need to change anything past this point:

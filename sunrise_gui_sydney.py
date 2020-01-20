@@ -9,7 +9,7 @@ import matplotlib.ticker as tick
 # Sydney, 2020
 year = 2020
 plot_title = "Sydney, 2020"
-data_dst = sun_rise_set(-33.8688, -151.2093, 0, "20200105 07:48", "20191222 04:19", 10, 11, "20201004", "20200405")
+results = sun_rise_set(-33.8688, -151.2093, 0, "20200105 07:48", "20191222 04:19", 10, 11, "20201004", "20200405")
 
 
 # no need to change anything past this point:
@@ -33,9 +33,9 @@ base = datetime.strptime(str(year) + '0101', '%Y%m%d')
 date_list = [base + timedelta(days=x) for x in range(0, num_days)]
 
 # main plot
-y_rise = [i.sunrise_dec for i in data_dst]
-y_set = [i.sunset_dec for i in data_dst]
-y_solar_noon = [i.solar_noon_dec for i in data_dst]
+y_rise = [i.sunrise_dec for i in results]
+y_set = [i.sunset_dec for i in results]
+y_solar_noon = [i.solar_noon_dec for i in results]
 ax_0_0 = plt.subplot(gs.new_subplotspec((0, 2), colspan=25, rowspan=10))
 ax_0_0.set_title(plot_title)
 ax_0_0.grid(which='major', linestyle='-', linewidth=0.5, color='grey')
@@ -53,7 +53,7 @@ ax_0_0.legend(loc='best', fontsize='small')
 
 
 # Day Length
-day_length = [i.daylight_hours for i in data_dst]
+day_length = [i.daylight_hours for i in results]
 ax_1_0 = plt.subplot(gs.new_subplotspec((16, 0), colspan=12, rowspan=12))
 ax_1_0.set_title("Length of Day ")
 ax_1_0.grid(which='major', linestyle='-', linewidth=0.5, color='grey')
@@ -65,9 +65,9 @@ ax_1_0.plot(date_list, day_length, 'k')
 
 
 # Sunrise Sunset Data
-sunrise_roc = [i.sunrise_change_mins for i in data_dst]
-sunset_roc = [i.sunset_change_mins for i in data_dst]
-total_roc = [i.change_total_mins for i in data_dst]
+sunrise_roc = [i.sunrise_change_mins for i in results]
+sunset_roc = [i.sunset_change_mins for i in results]
+total_roc = [i.change_total_mins for i in results]
 ax_1_1 = plt.subplot(gs.new_subplotspec((16, 16), colspan=12, rowspan=12))
 ax_1_1.set_title("Sunrise / Sunset Rate of Change\n- days getting shorter, + days getting longer")
 ax_1_1.grid(which='major', linestyle='-', linewidth=0.5, color='grey')
