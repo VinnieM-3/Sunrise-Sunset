@@ -188,9 +188,7 @@ def sun_rise_set(latitude, longitude, elevation, peri_date, sols_date, std_tz, d
     b = radians(latitude)
 
     # correction for specific longitude (i.e. not being directly on the timezone meridian)
-    longitude_correction_hrs = -((abs(longitude) - (15*abs(std_tz))) / 15)
-    if std_tz <= 0:
-        longitude_correction_hrs *= -1
+    longitude_correction_hrs = (std_tz * 15 - longitude) / 15
 
     prev_sunrise_dec_no_dst = 0
     prev_sunset_dec_no_dst = 0
