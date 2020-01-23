@@ -8,7 +8,7 @@ import matplotlib.ticker as tick
 
 # Mumbai, 2020
 year = 2020
-plot_title = "Mumbai, 2020"
+plot_title = "Sunrise / Sunset Mumbai, 2020"
 results = sun_rise_set(18.95, 72.833, 0, "20200105 07:48", "20191222 04:19", 5.5)
 
 

@@ -233,23 +233,55 @@ def sun_rise_set(latitude, longitude, elevation, peri_date, sols_date, std_tz, d
     return results
 
 
-# Converts decimal time to 24-hour time (e.g. 11.5 -> 11:30:00)
+# Converts decimal time to clock time (e.g. 11.5 -> 11:30AM)
 # inputs:
 #   decimal time
 # outputs:
-#   24-hour time
-def dec_to_clk(time_dec):
-    str_hours = str(int(time_dec)//1)
-    if (len(str_hours)) == 1:
-        str_hours = "0" + str_hours
+#   clock time
+def dec_to_clk(time_dec, format_12_24=24, secs_on=True, fixed_width=True):
+    int_hours = int(time_dec)//1
+    int_mins = int(time_dec % 1 * 60)//1
+    int_secs = int((time_dec % 1 * 60) % 1 * 60) // 1
 
-    str_mins = str(int(time_dec % 1 * 60)//1)
-    if (len(str_mins)) == 1:
-        str_mins = "0" + str_mins
+    if not secs_on:
+        if int_secs >= 30:
+            int_mins += 1
+            if int_mins == 60:
+                int_mins = 0
+                int_hours += 1
 
-    str_secs = str(int((time_dec % 1 * 60) % 1 * 60)//1)
+    if int_hours < 12:
+        str_am_pm = 'AM'
+    else:
+        str_am_pm = 'PM'
+
+    str_secs = str(int_secs)
     if (len(str_secs)) == 1:
         str_secs = "0" + str_secs
 
-    time_clk = str_hours + ":" + str_mins + ":" + str_secs
+    str_mins = str(int_mins)
+    if (len(str_mins)) == 1:
+        str_mins = "0" + str_mins
+
+    str_hours = str(int_hours)
+    if format_12_24 == 24:
+        if (len(str_hours)) == 1:
+            str_hours = "0" + str_hours
+    else:
+        if int_hours < 1:
+            str_hours = '12'
+        elif int_hours >= 13:
+            str_hours = str(int_hours - 12)
+
+        if fixed_width:
+            if (len(str_hours)) == 1:
+                str_hours = " " + str_hours
+
+    time_clk = str_hours + ":" + str_mins
+    if secs_on:
+        time_clk = time_clk + ':' + str_secs
+
+    if format_12_24 == 12:
+        time_clk += str_am_pm
+
     return time_clk

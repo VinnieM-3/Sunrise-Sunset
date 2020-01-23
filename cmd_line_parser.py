@@ -1,5 +1,5 @@
 import argparse
-from sun_rise_set import sun_rise_set
+from sun_rise_set import sun_rise_set, dec_to_clk
 
 # example
 # -lat 40.716 -long -74 -elev 0 -peri "20200105 07:48" -sols "20191222 04:19" -std_tz -5 -dst_tz -4 -dst_start 20200308 -dst_end 20201101 -title "NYC"
@@ -29,11 +29,16 @@ dst_start_date = args.dst_start_date
 dst_end_date = args.dst_end_date
 res_str_title = args.title
 
+
+def dc2(dec_time):
+    return dec_to_clk(dec_time, 12, False)
+
+
 results = sun_rise_set(latitude, longitude, elevation, peri_date, sols_date, std_tz, dst_tz,
                        dst_start_date, dst_end_date)
 
-res_str = res_str_title + ": {0:}  Solar Noon = {1:}  Sunrise = {2:}  Sunset = {3:}  daylight_hours = {4:5.3f}"
-res_str += "  sunrise_change_mins = {5:5.3f}   sunset_change_mins = {6:5.3f}"
+res_str = res_str_title + ": {0:}  Solar Noon = {1:}  Sunrise = {2:}  Sunset = {3:}  Daylight(hrs) = {4:5.3f}"
+res_str += "  Sunrise Change (mins) = {5:5.3f}  Sunset Change (mins) = {6:5.3f}"
 for i in results:
-    print(res_str.format(i.cal_date, i.solar_noon_hrs, i.sunrise_hrs, i.sunset_hrs, i.daylight_hours,
+    print(res_str.format(i.cal_date, dc2(i.solar_noon_dec), dc2(i.sunrise_dec), dc2(i.sunset_dec), i.daylight_hours,
                          i.sunrise_change_mins, i.sunset_change_mins))

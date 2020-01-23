@@ -7,7 +7,7 @@ import matplotlib.ticker as tick
 import argparse
 
 # example
-# -lat 40.716 -long -74 -elev 0 -peri "20200105 07:48" -sols "20191222 04:19" -std_tz -5 -dst_tz -4 -dst_start 20200308 -dst_end 20201101 -title "NYC"
+# -lat 40.716 -long -74 -elev 0 -peri "20200105 07:48" -sols "20191222 04:19" -std_tz -5 -dst_tz -4 -dst_start 20200308 -dst_end 20201101 -title "Sunrise / Sunset NYC, 2020"
 
 
 parser = argparse.ArgumentParser()

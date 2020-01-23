@@ -9,7 +9,7 @@ import matplotlib.ticker as tick
 # Sydney, 2020
 year = 2020
 plot_title = "Sydney, 2020"
-results = sun_rise_set(-33.8688, -151.2093, 0, "20200105 07:48", "20191222 04:19", 10, 11, "20201004", "20200405")
+results = sun_rise_set(-33.8688, 151.2093, 0, "20200105 07:48", "20191222 04:19", 10, 11, "20201004", "20200405")
 
 
 # no need to change anything past this point:
